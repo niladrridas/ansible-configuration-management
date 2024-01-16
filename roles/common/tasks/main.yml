@@ -1,0 +1,15 @@
+---
+- name: Ensure necessary packages are installed
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - package1
+    - package2
+
+- name: Configure common settings
+  template:
+    src: templates/common_config.conf.j2
+    dest: /etc/common_config.conf
+  notify:
+    - Restart Service
